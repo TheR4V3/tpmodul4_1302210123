@@ -37,7 +37,7 @@ class DoorMachine
 
     public DoorMachine()
     {
-        state = new LockedState();
+        state = new StateTerkunci();
     }
 
     public void SetState(IDoorState state)
@@ -64,7 +64,7 @@ interface IDoorState
     void Terkunci(DoorMachine doorMachine);
 }
 
-class LockedState : IDoorState
+class StateTerkunci : IDoorState
 {
     public string GetName()
     {
@@ -73,16 +73,16 @@ class LockedState : IDoorState
 
     public void Terbuka(DoorMachine doorMachine)
     {
-        doorMachine.SetState(new TerbukaState());
+        doorMachine.SetState(new StateTerbuka());
     }
 
     public void Terkunci(DoorMachine doorMachine)
     {
-        Console.WriteLine("Pintu sudah dikunci");
+        Console.WriteLine("Pintu sudah Terkunci");
     }
 }
 
-class TerbukaState : IDoorState
+class StateTerbuka : IDoorState
 {
     public string GetName()
     {
@@ -96,7 +96,7 @@ class TerbukaState : IDoorState
 
     public void Terkunci(DoorMachine doorMachine)
     {
-        doorMachine.SetState(new LockedState());
+        doorMachine.SetState(new StateTerkunci());
     }
 }
 
